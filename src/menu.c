@@ -14,7 +14,8 @@ void menuPrincipal()
 		   "\n|    4.Listar trabajos   |"
 		   "\n|   5.Listar servicios   |"
 		   "\n|        6.TOTAL         |"
-		   "\n|        7.SALIR         |"
+		   "\n|7.Servicios + realizados|"
+		   "\n|        8.SALIR         |"
 		   "\n같같같같같같같같같같같같같");
 }
 

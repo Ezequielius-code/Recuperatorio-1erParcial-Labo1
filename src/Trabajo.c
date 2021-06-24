@@ -369,7 +369,7 @@ int listarTrabajosOrdenados(Trabajo *pArrayTrabajos,int lengthTrabajos,Servicio 
 	}
 	else
 	{
-		menuOrdenar();
+		void menuOrdenar();
 		utn_getNumero(&opcOrden,"\n*Seleccione opcion:","\nERROR. Opcion no valida.",1,5,100);
 
 		switch(opcOrden)
@@ -520,6 +520,80 @@ int ordenarTrabajosMarcaDesc(Trabajo *pArrayTrabajos,int lengthTrabajos)
 				   strcmp(pArrayTrabajos[i].marcaBici,pArrayTrabajos[j].marcaBici) < 0)
 				{
 					intercambiarValores(&pArrayTrabajos[i],&pArrayTrabajos[j]);
+				}
+			}
+		}
+
+		retorno = 0;
+	}
+
+	return retorno;
+}
+
+int listarMayorCantServicios(Trabajo *pArrayTrabajos,int lengthTrabajos,Servicio *pArrayServicios,int lengthServicios)
+{
+	int retorno = -1;
+	int totalLimpieza = 0;
+	int totalParche = 0;
+	int totalCadena = 0;
+	int totalCentrado = 0;
+
+	if(pArrayTrabajos != NULL && lengthTrabajos > 0 &&
+	   pArrayServicios != NULL && lengthServicios > 0)
+	{
+		if(buscarPosOcupadas(pArrayTrabajos,lengthTrabajos) == 0)
+		{
+			printf("\nPrimero debe ingresar un trabajo.");
+			pausa();
+			retorno = 0;
+		}
+		else
+		{
+			if(contarServicios(pArrayTrabajos,lengthTrabajos,pArrayServicios,lengthServicios,&totalLimpieza,&totalParche,&totalCadena,&totalCentrado) == 0)
+			{
+
+			}
+		}
+
+		retorno = 0;
+	}
+
+	return retorno;
+}
+
+int contarServicios(Trabajo *pArrayTrabajos,int lengthTrabajos,Servicio *pArrayServicios,int lengthServicios,int *totalLimp,int *totalPar,int *totalCad,int *totalCen)
+{
+	int retorno = -1;
+	int i;
+	int j;
+
+	if(pArrayTrabajos != NULL && lengthTrabajos > 0 &&
+	   pArrayServicios != NULL && lengthServicios > 0)
+	{
+		for(i = 0;i < lengthTrabajos;i ++)
+		{
+			if(pArrayTrabajos[i].isEmpty == 0)
+			{
+				for(j = 0;j < lengthServicios;j ++)
+				{
+					if(pArrayTrabajos[i].idServicio == pArrayServicios[j].idServicio)
+					{
+						switch(pArrayServicios[j].idServicio)
+						{
+							case 0:
+								(*totalLimp) ++;
+							break;
+							case 1:
+								(*totalPar) ++;
+							break;
+							case 2:
+								(*totalCad) ++;
+							break;
+							default:
+								(*totalCen) ++;
+							break;
+						}
+					}
 				}
 			}
 		}

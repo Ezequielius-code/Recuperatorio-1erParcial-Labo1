@@ -178,4 +178,8 @@ int ordenarTrabajosMarcaAsc(Trabajo *pArrayTrabajos,int lengthTrabajos);
  */
 int ordenarTrabajosMarcaDesc(Trabajo *pArrayTrabajos,int lengthTrabajos);
 
+int listarMayorCantServicios(Trabajo *pArrayTrabajos,int lengthTrabajos,Servicio *pArrayServicios,int lengthServicios);
+
+int contarServicios(Trabajo *pArrayTrabajos,int lengthTrabajos,Servicio *pArrayServicios,int lengthServicios,int *totalLimp,int *totalPar,int *totalCad,int *totalCen);
+
 #endif /* TRABAJO_H_ */

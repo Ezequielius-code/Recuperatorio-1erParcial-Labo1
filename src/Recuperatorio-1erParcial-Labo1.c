@@ -63,6 +63,9 @@ int main(void)
 				case 7:
 					cerrarPrograma(&validacionMenu);
 				break;
+				case 8:
+					cerrarPrograma(&validacionMenu);
+				break;
 			}
 		}
 
