@@ -178,8 +178,15 @@ int ordenarTrabajosMarcaAsc(Trabajo *pArrayTrabajos,int lengthTrabajos);
  */
 int ordenarTrabajosMarcaDesc(Trabajo *pArrayTrabajos,int lengthTrabajos);
 
-int listarMayorCantServicios(Trabajo *pArrayTrabajos,int lengthTrabajos,Servicio *pArrayServicios,int lengthServicios);
-
-int contarServicios(Trabajo *pArrayTrabajos,int lengthTrabajos,Servicio *pArrayServicios,int lengthServicios,int *totalLimp,int *totalPar,int *totalCad,int *totalCen);
+/**
+ * \brief Lista los servicios de acuerdo al que tiene más cantidad de realizados.
+ * \param pArrayTrabajos Puntero al espacio de memoria desde donde obtendrá los datos cargados a analizar.
+ * \param lengthTrabajos Define el tamaño de la cadena.
+ * \param pArrayServicios Puntero al espacio de memoria desde donde obtendrá los datos cargados a contabilizar.
+ * \param lengthServicios Define el tamaño de la cadena.
+ * \return Retorna 0 (ÉXITO) si puede realizar operación y -1 (ERROR) si no.
+ *
+ */
+int listarMayorCantServicios(Trabajo *pArrayTrabajos, int lengthTrabajos,Servicio *pArrayServicios, int lengthServicios);
 
 #endif /* TRABAJO_H_ */

@@ -369,7 +369,7 @@ int listarTrabajosOrdenados(Trabajo *pArrayTrabajos,int lengthTrabajos,Servicio 
 	}
 	else
 	{
-		void menuOrdenar();
+		menuOrdenar();
 		utn_getNumero(&opcOrden,"\n*Seleccione opcion:","\nERROR. Opcion no valida.",1,5,100);
 
 		switch(opcOrden)
@@ -530,18 +530,21 @@ int ordenarTrabajosMarcaDesc(Trabajo *pArrayTrabajos,int lengthTrabajos)
 	return retorno;
 }
 
-int listarMayorCantServicios(Trabajo *pArrayTrabajos,int lengthTrabajos,Servicio *pArrayServicios,int lengthServicios)
+
+int listarMayorCantServicios(Trabajo *pArrayTrabajos, int lengthTrabajos,Servicio *pArrayServicios, int lengthServicios)
 {
 	int retorno = -1;
 	int totalLimpieza = 0;
 	int totalParche = 0;
 	int totalCadena = 0;
 	int totalCentrado = 0;
-
-	if(pArrayTrabajos != NULL && lengthTrabajos > 0 &&
-	   pArrayServicios != NULL && lengthServicios > 0)
+	int idServicio = 0;
+	int mayorServicio = 0;
+	char descripcion[25];
+	if (pArrayTrabajos != NULL && lengthTrabajos > 0 &&
+		pArrayServicios != NULL && lengthServicios > 0)
 	{
-		if(buscarPosOcupadas(pArrayTrabajos,lengthTrabajos) == 0)
+		if (buscarPosOcupadas(pArrayTrabajos,lengthTrabajos) == 0)
 		{
 			printf("\nPrimero debe ingresar un trabajo.");
 			pausa();
@@ -549,55 +552,49 @@ int listarMayorCantServicios(Trabajo *pArrayTrabajos,int lengthTrabajos,Servicio
 		}
 		else
 		{
-			if(contarServicios(pArrayTrabajos,lengthTrabajos,pArrayServicios,lengthServicios,&totalLimpieza,&totalParche,&totalCadena,&totalCentrado) == 0)
+			for (int i = 0; i < lengthTrabajos; i ++)
 			{
+				idServicio = pArrayTrabajos[i].idServicio;
 
-			}
-		}
-
-		retorno = 0;
-	}
-
-	return retorno;
-}
-
-int contarServicios(Trabajo *pArrayTrabajos,int lengthTrabajos,Servicio *pArrayServicios,int lengthServicios,int *totalLimp,int *totalPar,int *totalCad,int *totalCen)
-{
-	int retorno = -1;
-	int i;
-	int j;
-
-	if(pArrayTrabajos != NULL && lengthTrabajos > 0 &&
-	   pArrayServicios != NULL && lengthServicios > 0)
-	{
-		for(i = 0;i < lengthTrabajos;i ++)
-		{
-			if(pArrayTrabajos[i].isEmpty == 0)
-			{
-				for(j = 0;j < lengthServicios;j ++)
+				switch(idServicio)
 				{
-					if(pArrayTrabajos[i].idServicio == pArrayServicios[j].idServicio)
-					{
-						switch(pArrayServicios[j].idServicio)
+					case 20000:
+						totalLimpieza ++;
+						if(totalLimpieza > mayorServicio)
 						{
-							case 0:
-								(*totalLimp) ++;
-							break;
-							case 1:
-								(*totalPar) ++;
-							break;
-							case 2:
-								(*totalCad) ++;
-							break;
-							default:
-								(*totalCen) ++;
-							break;
+							mayorServicio = totalLimpieza;
+							obtenerDescripcionId(idServicio,descripcion,pArrayServicios,lengthServicios);
 						}
-					}
+					break;
+					case 20001:
+						totalParche ++;
+						if(totalParche > mayorServicio)
+						{
+							mayorServicio = totalParche;
+							obtenerDescripcionId(idServicio,descripcion,pArrayServicios,lengthServicios);
+						}
+					break;
+					case 20002:
+						totalCadena ++;
+						if(totalCadena > mayorServicio)
+						{
+							mayorServicio = totalCadena;
+							obtenerDescripcionId(idServicio,descripcion,pArrayServicios,lengthServicios);
+						}
+					break;
+					case 20003:
+						totalCentrado ++;
+						if(totalCentrado > mayorServicio)
+						{
+							mayorServicio = totalCentrado;
+							obtenerDescripcionId(idServicio,descripcion,pArrayServicios,lengthServicios);
+						}
+					break;
 				}
 			}
-		}
 
+		}
+		printf("Servicio con mayor recaudacion: %s con %d",descripcion,mayorServicio);
 		retorno = 0;
 	}
 

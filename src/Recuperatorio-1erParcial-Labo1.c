@@ -34,7 +34,7 @@ int main(void)
 	do
 	{
 		menuPrincipal();
-		utn_getNumero(&opcionMenu,"\n*Selecione opción: ","\nERROR. La opción no es válida.",1,7,100);
+		utn_getNumero(&opcionMenu,"\n*Selecione opción: ","\nERROR. La opción no es válida.",1,8,100);
 		fflush(stdin);
 		{
 			switch(opcionMenu)
@@ -61,7 +61,7 @@ int main(void)
 					sumarPreciosTrabajos(dataTrabajos,TRABAJOS,dataServicios,SERVICIOS);
 				break;
 				case 7:
-					cerrarPrograma(&validacionMenu);
+					listarMayorCantServicios(dataTrabajos,TRABAJOS,dataServicios,SERVICIOS);
 				break;
 				case 8:
 					cerrarPrograma(&validacionMenu);
